@@ -1,0 +1,27 @@
+<!doctype html>
+<html ng-app="TravelMap">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Travel Map</title>
+        <link rel="shortcut icon" type="image/icon" href="favicon.ico" />
+
+        <link rel="stylesheet" href="styles/styles.css">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css"> 
+
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+        <script src="scripts/app.js"></script>
+    </head>
+    <body ng-controller="MapController">
+        <ul>
+          <li ng-repeat="marker in mapData.markers">{{ marker.lat }}</li>
+        </ul>
+
+        <leaflet center="mapData.center" markers="mapData.markers" width="100%" height="100%"></leaflet>
+
+    </body>
+</html>
