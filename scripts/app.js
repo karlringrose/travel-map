@@ -11,7 +11,7 @@
 (function() {
     var app = angular.module('TravelMap', ['firebase', 'leaflet-directive']);
 
-    app.controller("MapController", ['$scope', 'leafletData', '$firebaseArray', function ($scope, leafletData, $firebaseArray) {
+    app.controller("MapController", ['$scope', 'leafletData', '$firebaseArray', '$firebaseObject', function ($scope, leafletData, $firebaseArray, $firebaseObject) {
         var ref = new Firebase('https://travelmap.firebaseio.com/');
 
         $scope.mapData = {
@@ -109,6 +109,21 @@
 
         // load markers
         markers.$loaded().then(displayMarkers).catch(function(error) { });
+
+        // unsafe update method
+        // do not use
+        // markers.$loaded().then(function () {
+        //     angular.forEach(markers, function (marker, key) {
+        //         if (markers[key].colour === 'none') {
+        //             // markers.$remove(key).then(function (ref) {
+        //             //     console.log('Done');
+        //             // }, function(error) {
+        //             //     console.log("Error:", error);
+        //             // });
+        //         }
+        //     });
+
+        // });
 
         // add markers
         $scope.addMarkers = function (latlng, id) {
