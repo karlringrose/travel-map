@@ -2,6 +2,12 @@
 
 'use strict';
 
+// todo
+// - delete marker on click of marker
+// - make markers draggable
+// - save user to cookie
+// - create view only / edit mode
+
 (function() {
     var app = angular.module('TravelMap', ['firebase', 'leaflet-directive']);
 
@@ -9,10 +15,22 @@
         var ref = new Firebase('https://travelmap.firebaseio.com/');
 
         $scope.mapData = {
+            layers: {
+                baselayers: {
+                    osm: {
+                        name: 'OpenStreetMap',
+                        url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        type: 'xyz',
+                        layerOptions: {
+                            noWrap: true
+                        }
+                    }
+                }
+            },
             center: {
-                lat: -25.165,
-                lng: 134.648,
-                zoom: 3
+                lat: 0,
+                lng: 0,
+                zoom: 2
             },
             events: {
                 map: {
