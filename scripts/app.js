@@ -1,4 +1,4 @@
-/* globals angular, Firebase, L */
+/* globals angular, Firebase, L, document */
 
 'use strict';
 
@@ -67,7 +67,6 @@
                 m = markers[markers.$indexFor(sync.key())];
                 isAdding = true;
             }
-
             leafletData.getMap().then(function (map) {
                 if (isAdding) {
                     if ($scope.mapData.selectedColour === 'none') { return; }
@@ -88,8 +87,9 @@
         };
 
         // load markers
-        markers.$loaded().then(displayMarkers).catch(function(error) { });
+        markers.$loaded().then(displayMarkers).catch(function (error) { console.log(error); });
 
+        // Add markers (edit mode)
         if (!READONLY) {
             $scope.addMarkers = function (latlng, id) {
                 markers.$add({
@@ -98,14 +98,12 @@
                     colour: $scope.mapData.selectedColour
                 }).then(displayMarkers);
             };
-
             $scope.$on('leafletDirectiveMap.click', function (event, args) {
                 $scope.addMarkers(args.leafletEvent.latlng, args.leafletEvent.originalEvent.timeStamp);
             });
         } else {
             $scope.updateUser();
         }
+
     }]);
-
 }());
-
