@@ -2,17 +2,14 @@
 
 'use strict';
 
-// todo
-// - delete marker on click of marker
-// - make markers draggable
-// - save user to cookie
-// - create view only / edit mode
-
 (function() {
+    var db = 'YOUR-DB.firebaseio.com';
+    var READONLY = false;
+
     var app = angular.module('TravelMap', ['firebase', 'leaflet-directive']);
 
     app.controller("MapController", ['$scope', 'leafletData', '$firebaseArray', '$firebaseObject', function ($scope, leafletData, $firebaseArray, $firebaseObject) {
-        var ref = new Firebase('https://travelmap.firebaseio.com/');
+        var ref = new Firebase('https://' + db + '/');
 
         $scope.mapData = {
             layers: {
@@ -45,34 +42,17 @@
         // users
         $scope.mapData.users = [
             {
-                name: 'chris',
+                name: 'user1',
                 colour: 'orange'
             },
             {
-                name: 'kristin',
-                colour: 'darkpurple'
-            },
-            {
-                name: 'belle',
-                colour: 'green'
-            },
-            {
-                name: 'dan',
+                name: 'user2',
                 colour: 'blue'
-            },
-            {
-                name: 'warwick',
-                colour: 'red'
-            },
-            {
-                name: 'lisa',
-                colour: 'purple'
             }
         ];
 
         $scope.updateUser = function() {
             document.querySelectorAll('.select-user')[0].style.display = 'none';
-            // todo save to cookie
         };
 
         // markers
@@ -110,34 +90,21 @@
         // load markers
         markers.$loaded().then(displayMarkers).catch(function(error) { });
 
-        // unsafe update method
-        // do not use
-        // markers.$loaded().then(function () {
-        //     angular.forEach(markers, function (marker, key) {
-        //         if (markers[key].colour === 'none') {
-        //             // markers.$remove(key).then(function (ref) {
-        //             //     console.log('Done');
-        //             // }, function(error) {
-        //             //     console.log("Error:", error);
-        //             // });
-        //         }
-        //     });
+        if (!READONLY) {
+            $scope.addMarkers = function (latlng, id) {
+                markers.$add({
+                    lat: parseFloat(latlng.lat),
+                    lng: parseFloat(latlng.lng),
+                    colour: $scope.mapData.selectedColour
+                }).then(displayMarkers);
+            };
 
-        // });
-
-        // add markers
-        // $scope.addMarkers = function (latlng, id) {
-        //     markers.$add({
-        //         lat: parseFloat(latlng.lat),
-        //         lng: parseFloat(latlng.lng),
-        //         colour: $scope.mapData.selectedColour
-        //     }).then(displayMarkers);
-        // };
-
-        // marker event
-        // $scope.$on('leafletDirectiveMap.click', function (event, args) {
-        //     $scope.addMarkers(args.leafletEvent.latlng, args.leafletEvent.originalEvent.timeStamp);
-        // });
+            $scope.$on('leafletDirectiveMap.click', function (event, args) {
+                $scope.addMarkers(args.leafletEvent.latlng, args.leafletEvent.originalEvent.timeStamp);
+            });
+        } else {
+            $scope.updateUser();
+        }
     }]);
 
 }());
