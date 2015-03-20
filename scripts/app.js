@@ -126,18 +126,18 @@
         // });
 
         // add markers
-        $scope.addMarkers = function (latlng, id) {
-            markers.$add({
-                lat: parseFloat(latlng.lat),
-                lng: parseFloat(latlng.lng),
-                colour: $scope.mapData.selectedColour
-            }).then(displayMarkers);
-        };
+        // $scope.addMarkers = function (latlng, id) {
+        //     markers.$add({
+        //         lat: parseFloat(latlng.lat),
+        //         lng: parseFloat(latlng.lng),
+        //         colour: $scope.mapData.selectedColour
+        //     }).then(displayMarkers);
+        // };
 
         // marker event
-        $scope.$on('leafletDirectiveMap.click', function (event, args) {
-            $scope.addMarkers(args.leafletEvent.latlng, args.leafletEvent.originalEvent.timeStamp);
-        });
+        // $scope.$on('leafletDirectiveMap.click', function (event, args) {
+        //     $scope.addMarkers(args.leafletEvent.latlng, args.leafletEvent.originalEvent.timeStamp);
+        // });
     }]);
 
 }());
