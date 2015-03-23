@@ -64,6 +64,10 @@
             {
                 name: 'Emma',
                 colour: 'purple'
+            },
+            {
+                name: 'ali',
+                colour: 'yellow'
             }
         ];
 
