@@ -43,7 +43,7 @@
         $scope.mapData.users = [
             {
                 name: 'Karl',
-                colour: 'cadetblue'
+                colour: 'darkblue'
             },
             {
                 name: 'James',
@@ -66,7 +66,7 @@
                 colour: 'purple'
             },
             {
-                name: 'ali',
+                name: 'Ali',
                 colour: 'lightred'
             }
         ];
