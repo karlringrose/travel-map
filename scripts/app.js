@@ -33,7 +33,11 @@
                 map: {
                     enable: ['click'],
                     logic: 'emit'
-                }
+                },
+                marker: {
+                    enable: ['click'],
+                    logic: 'emit'
+                 }
             },
             users: [],
             selectedColour: 'none'
@@ -78,6 +82,31 @@
         // markers
         var markers = $firebaseArray(ref);
 
+        // Delete Marker
+        var deleteMarker = function (e) {
+            // Check to make sure the shift key is pressed before deleting
+            if(e.originalEvent.shiftKey == false) return;
+
+            var id = e.target.options.title;
+            var record = markers.$getRecord(id);
+            markers.$remove(record).then(function (ref) { });
+            this.setOpacity(0); // hide marker
+        };
+
+        var addMarker = function (marker, map, colour) {
+            var userMarker = L.AwesomeMarkers.icon({
+                markerColor: colour
+            });
+            return L.marker([marker.lat, marker.lng], {
+                    icon: userMarker,
+                    clickable: true,
+                    title: marker.$id
+                })
+                .on('click', deleteMarker)
+                .addTo(map);
+
+        };
+
         // display markers
         var displayMarkers = function (sync) {
             var m = sync;
@@ -90,18 +119,12 @@
             leafletData.getMap().then(function (map) {
                 if (isAdding) {
                     if ($scope.mapData.selectedColour === 'none') { return; }
-                    var userMarker = L.AwesomeMarkers.icon({
-                        markerColor: $scope.mapData.selectedColour
-                    });
-                    marker = L.marker([m.lat, m.lng], {icon: userMarker}).addTo(map);
+                    marker = addMarker(m, map, $scope.mapData.selectedColour);
                     return;
                 }
                 angular.forEach(m, function (marker, key) {
                     if (!marker.lng || !marker.lat) { return; }
-                    var userMarker = L.AwesomeMarkers.icon({
-                        markerColor: marker.colour
-                    });
-                    marker = L.marker([marker.lat, marker.lng], {icon: userMarker}).addTo(map);
+                    marker = addMarker(marker, map, marker.colour);
                 });
             });
         };
@@ -118,9 +141,17 @@
                     colour: $scope.mapData.selectedColour
                 }).then(displayMarkers);
             };
-            $scope.$on('leafletDirectiveMap.click', function (event, args) {
-                $scope.addMarkers(args.leafletEvent.latlng, args.leafletEvent.originalEvent.timeStamp);
-            });
+
+
+                $scope.$on('leafletDirectiveMap.click', function (event, args) {
+                    // Check for user selected and shift key is pressed
+                    if ($scope.mapData.selectedColour == 'none' || args.leafletEvent.originalEvent.shiftKey == false) return;
+
+                    $scope.addMarkers(args.leafletEvent.latlng, args.leafletEvent.originalEvent.timeStamp);
+
+                });
+
+
         } else {
             $scope.updateUser();
         }
