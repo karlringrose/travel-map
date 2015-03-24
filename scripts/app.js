@@ -16,7 +16,7 @@
                 baselayers: {
                     osm: {
                         name: 'OpenStreetMap',
-                        url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
                         type: 'xyz',
                         layerOptions: {
                             noWrap: true
@@ -27,7 +27,7 @@
             center: {
                 lat: 0,
                 lng: 0,
-                zoom: 2
+                zoom: 3
             },
             events: {
                 map: {
@@ -86,8 +86,7 @@
         var deleteMarker = function (e) {
             // Check to make sure the shift key is pressed before deleting
             if(e.originalEvent.shiftKey == false) return;
-
-            var id = e.target.options.title;
+            var id = e.target.options.alt;
             var record = markers.$getRecord(id);
             markers.$remove(record).then(function (ref) { });
             this.setOpacity(0); // hide marker
@@ -95,12 +94,14 @@
 
         var addMarker = function (marker, map, colour) {
             var userMarker = L.AwesomeMarkers.icon({
-                markerColor: colour
+                markerColor: colour,
+                id: marker.$id
             });
+            var user = findUser(marker.colour);
             return L.marker([marker.lat, marker.lng], {
                     icon: userMarker,
                     clickable: true,
-                    title: marker.$id
+                    title: user,
                 })
                 .on('click', deleteMarker)
                 .addTo(map);
@@ -154,6 +155,22 @@
 
         } else {
             $scope.updateUser();
+        }
+
+
+        function findUser(userColour){
+
+            var users = $scope.mapData.users,
+            usersLength = users.length,
+            userName = '',
+            i = 0;
+
+            for (i; i < usersLength; i++) {
+
+                if (userColour == users[i].colour)
+                    userName = users[i].name;
+            }
+            return userName;
         }
 
     }]);

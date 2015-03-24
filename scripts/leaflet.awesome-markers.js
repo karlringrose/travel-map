@@ -51,6 +51,10 @@
                     (-options.bgPos.x) + 'px ' + (-options.bgPos.y) + 'px';
             }
 
+            if (options.id){
+                div.setAttribute("alt",options.id);
+            }
+
             this._setIconStyles(div, 'icon-' + options.markerColor);
             return div;
         },
