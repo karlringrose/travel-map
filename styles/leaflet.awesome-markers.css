@@ -6,9 +6,9 @@ Version: 1.0
 
 /* Marker setup */
 .awesome-marker {
-  background: url('../images/markers-soft.png') no-repeat 0 0;
-  width: 35px;
-  height: 46px;
+  background: url('../images/markers-soft-25px.png') no-repeat 0 0;
+  width: 20px;
+  height: 25px;
   position:absolute;
   left:0;
   top:0;
@@ -17,9 +17,9 @@ Version: 1.0
 }
 
 .awesome-marker-shadow {
-  background: url('../images/markers-shadow.png') no-repeat 0 0;
-  width: 36px;
-  height: 16px;
+  background: url('../images/markers-shadow-8px.png') no-repeat 0 0;
+  width: 18px;
+  height: 8px;
 }
 
 /* Retina displays */
@@ -52,73 +52,73 @@ Version: 1.0
 }
 
 .awesome-marker-icon-darkred {
-  background-position: -180px 0;
+  background-position: -98px 0;
 }
 
 .awesome-marker-icon-lightred {
-  background-position: -360px 0;
+  background-position: -196px 0;
 }
 
 .awesome-marker-icon-orange {
-  background-position: -36px 0;
+  background-position: -20px 0;
 }
 
 .awesome-marker-icon-beige {
-  background-position: -396px 0;
+  background-position: -215px 0;
 }
 
 .awesome-marker-icon-green {
-  background-position: -72px 0;
+  background-position: -39px 0;
 }
 
 .awesome-marker-icon-darkgreen {
-  background-position: -252px 0;
+  background-position: -137px 0;
 }
 
 .awesome-marker-icon-lightgreen {
-  background-position: -432px 0;
+  background-position: -235px 0;
 }
 
 .awesome-marker-icon-blue {
-  background-position: -108px 0;
+  background-position: -59px 0;
 }
 
 .awesome-marker-icon-darkblue {
-  background-position: -216px 0;
+  background-position: -118px 0;
 }
 
 .awesome-marker-icon-lightblue {
-  background-position: -468px 0;
+  background-position: -254px 0;
 }
 
 .awesome-marker-icon-purple {
-  background-position: -144px 0;
+  background-position: -78px 0;
 }
 
 .awesome-marker-icon-darkpurple {
-  background-position: -288px 0;
+  background-position: -157px 0;
 }
 
 .awesome-marker-icon-pink {
-  background-position: -504px 0;
+  background-position: -274px 0;
 }
 
 .awesome-marker-icon-cadetblue {
-  background-position: -324px 0;
+  background-position: -176px 0;
 }
 
 .awesome-marker-icon-white {
-  background-position: -574px 0;
+  background-position: -313px 0;
 }
 
 .awesome-marker-icon-gray {
-  background-position: -648px 0;
+  background-position: -352px 0;
 }
 
 .awesome-marker-icon-lightgray {
-  background-position: -612px 0;
+  background-position: -333px 0;
 }
 
 .awesome-marker-icon-black {
-  background-position: -682px 0;
+  background-position: -371px 0;
 }
