@@ -25,8 +25,8 @@
                 }
             },
             center: {
-                lat: 0,
-                lng: 0,
+                lat: 2,
+                lng: 12,
                 zoom: 3
             },
             events: {
@@ -76,7 +76,7 @@
         ];
 
         $scope.updateUser = function() {
-            document.querySelectorAll('.select-user')[0].style.display = 'none';
+            //document.querySelectorAll('.select-user')[0].style.display = 'none';
         };
 
         // markers
@@ -84,10 +84,19 @@
 
         // Delete Marker
         var deleteMarker = function (e) {
-            // Check to make sure the shift key is pressed before deleting
-            if(e.originalEvent.shiftKey == false) return;
-            var id = e.target.options.alt;
+            // Check to make sure the shift key is pressed and that you are before deleting
+            if(e.originalEvent.shiftKey == false) {
+                console.log('Delete: Shift key not pressed');
+                return;
+            }
+            if($scope.mapData.selectedColour != e.target.options.icon.options.markerColor){
+                console.log('Delete: You need to be the same user to delete');
+                return;
+            }
+
+            var id = e.target.options.icon.options.id;
             var record = markers.$getRecord(id);
+
             markers.$remove(record).then(function (ref) { });
             this.setOpacity(0); // hide marker
         };
@@ -105,7 +114,6 @@
                 })
                 .on('click', deleteMarker)
                 .addTo(map);
-
         };
 
         // display markers
@@ -143,14 +151,20 @@
                 }).then(displayMarkers);
             };
 
+            $scope.$on('leafletDirectiveMap.click', function (event, args) {
+                // Check for user selected and shift key is pressed
+                if ($scope.mapData.selectedColour == 'none'){
+                    console.log('Add: User profile not selected');
+                    return;
+                }
+                if (args.leafletEvent.originalEvent.shiftKey == false) {
+                    console.log('Add: Shift key not pressed');
+                    return;
+                }
 
-                $scope.$on('leafletDirectiveMap.click', function (event, args) {
-                    // Check for user selected and shift key is pressed
-                    if ($scope.mapData.selectedColour == 'none' || args.leafletEvent.originalEvent.shiftKey == false) return;
+                $scope.addMarkers(args.leafletEvent.latlng, args.leafletEvent.originalEvent.timeStamp);
 
-                    $scope.addMarkers(args.leafletEvent.latlng, args.leafletEvent.originalEvent.timeStamp);
-
-                });
+            });
 
 
         } else {
