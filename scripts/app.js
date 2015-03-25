@@ -40,7 +40,8 @@
                  }
             },
             users: [],
-            selectedColour: 'none'
+            selectedColour: 'none',
+            selectedName: 'none'
         };
 
         // users
@@ -75,8 +76,12 @@
             }
         ];
 
-        $scope.updateUser = function() {
-            //document.querySelectorAll('.select-user')[0].style.display = 'none';
+        $scope.updateUser = function(user) {
+            // add a clear user variable
+            if(user == 'clear') user = { colour: 'none', name : 'none' };
+
+            $scope.mapData.selectedColour = user.colour;
+            $scope.mapData.selectedName = user.name;
         };
 
         // markers
