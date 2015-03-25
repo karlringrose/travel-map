@@ -3,7 +3,7 @@
 'use strict';
 
 (function() {
-    var db = 'blazing-inferno-6519.firebaseio.com';
+    var db = 'YOUR-DB.firebaseio.com';
     var READONLY = false;
 
     var app = angular.module('TravelMap', ['firebase', 'leaflet-directive']);
@@ -47,32 +47,12 @@
         // users
         $scope.mapData.users = [
             {
-                name: 'Karl',
+                name: 'user1',
                 colour: 'darkblue'
             },
             {
-                name: 'James',
-                colour: 'blue'
-            },
-            {
-                name: 'Amanda',
+                name: 'user2',
                 colour: 'green'
-            },
-            {
-                name: 'Jason',
-                colour: 'orange'
-            },
-            {
-                name: 'Marcos',
-                colour: 'pink'
-            },
-            {
-                name: 'Emma',
-                colour: 'purple'
-            },
-            {
-                name: 'Ali',
-                colour: 'lightred'
             }
         ];
 
