@@ -1,4 +1,4 @@
-/* globals angular, Firebase, L, document */
+    /* globals angular, Firebase, L, document */
 
 'use strict';
 
@@ -9,7 +9,7 @@
     var app = angular.module('TravelMap', ['firebase', 'leaflet-directive']);
 
     app.controller("MapController", ['$scope', 'leafletData', '$firebaseArray', '$firebaseObject', function ($scope, leafletData, $firebaseArray, $firebaseObject) {
-        var ref = new Firebase('https://' + db + '/');
+        var ref = new Firebase('https://' + db + '/awol');
 
         $scope.mapData = {
             layers: {
@@ -60,19 +60,15 @@
             },
             {
                 name: 'Jason',
-                colour: 'orange'
+                colour: 'red'
             },
             {
                 name: 'Marcos',
-                colour: 'pink'
+                colour: 'darkpurple'
             },
             {
                 name: 'Emma',
                 colour: 'purple'
-            },
-            {
-                name: 'Ali',
-                colour: 'lightred'
             }
         ];
 

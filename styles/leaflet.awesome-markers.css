@@ -4,23 +4,28 @@ License: MIT
 Version: 1.0
 */
 
+
+
+
+
+
 /* Marker setup */
 .awesome-marker {
-  background: url('../images/markers-soft-25px.png') no-repeat 0 0;
-  width: 20px;
-  height: 25px;
   position:absolute;
   left:0;
   top:0;
   display: block;
   text-align: center;
+
+  border-radius: 20px!important;
+  height: 7px!important;
+  width: 8px!important;
+  margin-left: -10px!important;
+  margin-top: -10px!important;
+  box-shadow: 1px 1px 2px rgba(100,100,100,.13);
 }
 
-.awesome-marker-shadow {
-  background: url('../images/markers-shadow-8px.png') no-repeat 0 0;
-  width: 18px;
-  height: 8px;
-}
+
 
 /* Retina displays */
 @media (min--moz-device-pixel-ratio: 1.5),(-o-min-device-pixel-ratio: 3/2),
@@ -46,79 +51,23 @@ Version: 1.0
   color: #fff;
 }
 
-/* Colors */
-.awesome-marker-icon-red {
-  background-position: 0 0;
-}
 
-.awesome-marker-icon-darkred {
-  background-position: -98px 0;
-}
-
-.awesome-marker-icon-lightred {
-  background-position: -196px 0;
-}
-
-.awesome-marker-icon-orange {
-  background-position: -20px 0;
-}
-
-.awesome-marker-icon-beige {
-  background-position: -215px 0;
-}
-
-.awesome-marker-icon-green {
-  background-position: -39px 0;
-}
-
-.awesome-marker-icon-darkgreen {
-  background-position: -137px 0;
-}
-
-.awesome-marker-icon-lightgreen {
-  background-position: -235px 0;
-}
-
-.awesome-marker-icon-blue {
-  background-position: -59px 0;
-}
-
-.awesome-marker-icon-darkblue {
-  background-position: -118px 0;
-}
-
-.awesome-marker-icon-lightblue {
-  background-position: -254px 0;
-}
-
-.awesome-marker-icon-purple {
-  background-position: -78px 0;
-}
-
-.awesome-marker-icon-darkpurple {
-  background-position: -157px 0;
-}
-
-.awesome-marker-icon-pink {
-  background-position: -274px 0;
-}
-
-.awesome-marker-icon-cadetblue {
-  background-position: -176px 0;
-}
-
-.awesome-marker-icon-white {
-  background-position: -313px 0;
-}
-
-.awesome-marker-icon-gray {
-  background-position: -352px 0;
-}
-
-.awesome-marker-icon-lightgray {
-  background-position: -333px 0;
-}
-
-.awesome-marker-icon-black {
-  background-position: -371px 0;
-}
+.awesome-marker-icon-red{background:rgb(214, 62, 42);}
+.awesome-marker-icon-darkred{background:#a23336;}
+.awesome-marker-icon-lightred{background:#ff8e7f;}
+.awesome-marker-icon-orange{background:#f69730;}
+.awesome-marker-icon-beige{background:#ffcb92;}
+.awesome-marker-icon-green{background:#72b026;}
+.awesome-marker-icon-darkgreen{background:#728224;}
+.awesome-marker-icon-lightgreen{background:#72b026;}
+.awesome-marker-icon-blue{background:#38aadd;}
+.awesome-marker-icon-darkblue{background:#0067a3;}
+.awesome-marker-icon-lightblue{background:#8adaff}
+.awesome-marker-icon-purple{background:#d252b9}
+.awesome-marker-icon-darkpurple{ background:#5b396b}
+.awesome-marker-icon-pink{ background:#ff91ea}
+.awesome-marker-icon-cadetblue{ background:#436978}
+.awesome-marker-icon-white{ background:#fbfbfb}
+.awesome-marker-icon-gray{ background:#575757}
+.awesome-marker-icon-lightgray{ background:#a3a3a3}
+.awesome-marker-icon-black{ background:#303030}
